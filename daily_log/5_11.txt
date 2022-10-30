@@ -1,0 +1,21 @@
+Things to do:
+	1.solve pip installation question on unbuntu (proxy)
+	2.postman (used for testing backend code without having frontend running)
+	3.frontend compilation
+	4.follow up teams access right
+
+1.	did not solve proxy issue on ubuntu yet, used powershell to run backend code instead. Now backend can be run on both powershell and vs code
+	configure proxy on powershell:	https://inside-docupedia.bosch.com/confluence/display/CBDPSIN/Python%3A+Using+pip+with+Bosch+Artifactory
+	use pip install -r requirements.txt to install required packages, the run backend code with python chatbot.py
+	
+	install postgresql on windows powershell
+		postgresql PASSWORD:	WNL4SGH
+	
+2.	
+
+3.	install nodejs and set environment variable
+	simply install nodejs from official website
+	env variable:	https://jingyan.baidu.com/article/fec4bce2950133f2618d8b02.html
+	npm proxy setting
+	for more 
+

@@ -1,0 +1,4 @@
+https://www.kite.com/python/docs/sqlalchemy.engine.ResultProxy
+[methods about how to access col info inside a sqlalchemy row object]
+One thing to note: the remote server only support access by integers
+

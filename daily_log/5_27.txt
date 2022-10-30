@@ -1,0 +1,6 @@
+A Fix for OperationalError: (psycopg2.OperationalError) SSL error: decryption failed or bad record mac
+https://virtualandy.wordpress.com/2019/09/04/a-fix-for-operationalerror-psycopg2-operationalerror-ssl-error-decryption-failed-or-bad-record-mac/#:~:text=OperationalError)%20SSL%20error%3A%20decryption%20failed%20or%20bad%20record%20mac,-Andy%20Hill%20Virtual&text=The%20accepted%20solution%20suggests%20using%20lazy%2Dapps%20%3D%20true%20in%20uwsgi.&text=When%20uwsgi%20starts%2C%20the%20python,(N%20%3D%20processes%20in%20uwsgi.
+https://docs.sqlalchemy.org/en/13/core/connections.html?highlight=dispose#sqlalchemy.engine.Engine.dispose
+
+add download function
+https://www.npmjs.com/package/vue-table-to-excel

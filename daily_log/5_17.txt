@@ -1,0 +1,10 @@
+Useful resources to help set up postgresql database connection:
+	https://www.youtube.com/watch?v=X9CW1-YCg8o [how to use pgadmin to look up for elements in tables]
+	https://towardsdatascience.com/sqlalchemy-python-tutorial-79a577141a91 [connect to database]
+	https://gpdb.docs.pivotal.io/510/admin_guide/access_db/topics/g-pgadmin-for-greenplum-database.html [check items in pgadmin]
+	https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm [a detailed tutorial of SqlAlchemy, using session is helpful to get things working]
+
+
+
+Conda virtual environment
+	https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/

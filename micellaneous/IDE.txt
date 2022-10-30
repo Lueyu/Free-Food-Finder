@@ -1,0 +1,2 @@
+auto fix style: alt + shift + f
+clear console: cls

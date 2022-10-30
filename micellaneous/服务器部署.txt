@@ -1,0 +1,77 @@
+1. download mobaXterm
+2. find ssh button on top left corner, log in using username and password
+
+VM3: 20.188.108.163（新测试）
+Account: PBRadmin
+Password:ZAQ!xsw2cde3
+
+
+3. cd /etc/nginx/sites-enabled
+4. sudo nano default; to change default setting
+	 location ^~/feedback/  {
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_pass_header Set-Cookie;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+            proxy_redirect off;
+
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods *;
+            add_header Access-Control-Allow-Headers *;
+            add_header Access-Control-Allow-Credentials true;
+
+            proxy_pass http://localhost:8083/;
+        }
+	added path /feedback/ ; bind port as 8083
+
+
+    location ^~/feedback_server/  {
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_pass_header Set-Cookie;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+            proxy_redirect off;
+
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods *;
+            add_header Access-Control-Allow-Headers *;
+            add_header Access-Control-Allow-Credentials true;
+
+            proxy_pass http://localhost:5011/;
+        }
+    
+    also remember to configure uwsgi to set up the backend
+
+5. use nginx -t to check config files
+6. if no error, run nginx -s reload
+
+
+内部数据库： postgresql+psycopg2://rbadmin_app2:postgres@10.187.232.28:5432/landing
+外部数据库： postgresql+psycopg2://postgres:P@ssw0rd@127.0.0.1:5432/postgres
+
+pkill -f uwsgi -9 // end process
+uwsgi -d --ini uwsgi.ini // start process
+
+psql -h 127.0.0.1 -U postgres // connect to external database
+P@ssw0rd // the password for external database
+
+useful command for cmd database query:
+    \dt
+    \l
+    select * from feedback ;     // space is required
+
+// location of the webapp
+cd /var/www/webapp/feedback
+cd frontend/dist
+cd backend/server
+
+
+uwsgi --reload uwsgi.pid

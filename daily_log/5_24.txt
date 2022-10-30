@@ -1,0 +1,20 @@
+bug fix: get data after checking login  COMPLETED
+bug fix: pagination should not refresh the filtered result
+frontend layout adjustment  COMPLETED
+add loading stage before getting data from backend is finished
+
+
+Build a new login page using element ui 
+    Dependency configuration:
+        "sass": "^1.33.0",
+        "scss-loader": "0.0.1",
+        "sass-loader": "7.3.1",
+    make sure you have these packages locally to compile
+
+
+landing page showcase guide
+
+get familiar with database structure
+
+bug fix: last week -> clear -> no date no query -> 4 star
+
