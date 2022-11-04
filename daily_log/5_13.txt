@@ -1,8 +1,0 @@
-Build feedback page
-
-useful links:
-	how to create a CRUD web app from scrath with vue and flask:
-		https://testdriven.io/blog/developing-a-single-page-app-with-flask-and-vuejs/#vue-setup
-
-how to transform sqlalchemy object into json
-	https://blog.csdn.net/stone0823/article/details/103945194?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-0&spm=1001.2101.3001.4242

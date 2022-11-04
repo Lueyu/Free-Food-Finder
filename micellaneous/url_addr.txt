@@ -1,9 +1,0 @@
-chatbot frontend: https://github.boschdevcloud.com/ZFN3WX/ChatBotFrontEnd/tree/Internal
-
-landing page: https://github.boschdevcloud.com/IJU1WX/landingpage.git
-
-bosch frontend kit: https://frok.westeurope.cloudapp.azure.com/atoms
-
-feedback_page: https://github.boschdevcloud.com/WNL4SGH/feedback_page
-
-后台数据管理平台：https://github.boschdevcloud.com/ZFN3WX/ChatbotManagementFrontend.git

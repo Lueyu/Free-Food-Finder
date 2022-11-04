@@ -1,0 +1,11 @@
+python3 -m venv env
+source env/bin/activate
+
+npm run serve
+
+https://testdriven.io/blog/developing-a-single-page-app-with-flask-and-vuejs/
+
+https://medium.com/geekculture/hot-reload-does-not-work-in-vue-cli-16ca8ead18be
+
+hot reload
+https://medium.com/geekculture/hot-reload-does-not-work-in-vue-cli-16ca8ead18be

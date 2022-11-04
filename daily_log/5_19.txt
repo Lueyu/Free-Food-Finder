@@ -1,6 +1,0 @@
-https://www.programmersought.com/article/71184396295/#2_50 [pagination]
-https://blog.csdn.net/weixin_45688725/article/details/105928148?utm_medium=distribute.pc_relevant_download.none-task-blog-2~default~BlogCommendFromBaidu~default-14.nonecase&depth_1-utm_source=distribute.pc_relevant_download.none-task-blog-2~default~BlogCommendFromBaidu~default-14.nonecas
-[input retrieving]
-
-https://topic.alibabacloud.com/a/several-pagination-methods-of-sqlalchemy-and-flask-sqlalchemy_8_8_30013584.html
-[sqlalchemy pagination limit]
