@@ -51,7 +51,10 @@
               justify="left"
             >
               <el-form-item label="Uniqname:">
-                <el-input v-model="form.name"></el-input>
+                <el-input
+                  placeholder="Enter your uniqname"
+                  v-model="form.name"
+                ></el-input>
               </el-form-item>
 
               <el-form-item label="Campus:">
@@ -65,7 +68,11 @@
               </el-form-item>
 
               <el-form-item label="Location:">
-                <el-input v-model="form.location"></el-input>
+                <gmap-autocomplete
+                  class="gmap-auto"
+                  @place_changed="initMarker"
+                >
+                </gmap-autocomplete>
               </el-form-item>
 
               <el-form-item label="Type of Food:">
@@ -136,6 +143,9 @@ export default {
   components: {
     GoogleMap,
   },
+  created() {
+    this.$root.$refs.H = this;
+  },
   data() {
     return {
       show_home: true,
@@ -154,6 +164,9 @@ export default {
     };
   },
   methods: {
+    initMarker(loc) {
+      this.form.location = loc;
+    },
     change_display_add() {
       this.show_home = false;
       this.show_add = true;
@@ -218,5 +231,28 @@ html {
 
 .clearfix:after {
   clear: both;
+}
+.gmap-auto {
+  border-color: #c0c4cc;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #DCDFE6;
+  border-color: #dcdfe6;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 15px;
+  transition: border-color 0.2s cubic-bezier (0.645, 0.045, 0.355, 1);
+  width: 100%;
 }
 </style>
