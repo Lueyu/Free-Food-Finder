@@ -9,21 +9,26 @@
   },
   "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
   "dependencies": {
-    "core-js": "^3.6.5",
+    "@babel/eslint-parser": "^7.5.4",
+    "autoprefixer": "^9.0.0",
+    "core-js": "^3.26.0",
     "element-ui": "^2.15.10",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "postcss": "^8.0.0",
+    "vue": "^2.7.14",
+    "vue-router": "^2.7.14",
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.11",
-    "@vue/cli-plugin-eslint": "~4.5.11",
-    "@vue/cli-plugin-router": "~4.5.11",
-    "@vue/cli-service": "~4.5.11",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.5.4",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-plugin-router": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
     "babel-plugin-dynamic-import-node": "^2.3.3",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "eslint": "^8.27.0",
+    "eslint-plugin-vue": "^9.7.0",
+    "vue-template-compiler": "^2.7.14",
+    "webpack": "^5.75.0"
   },
   "eslintConfig": {
     "root": true,
@@ -35,7 +40,8 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
     },
     "rules": {}
   },
