@@ -9,12 +9,13 @@
  */
 CREATE TABLE info(
     foodID integer primary key autoincrement,
-    uniqname VARCHAR(20),
-    campus VARCHAR(30),
-    foodLocation VARCHAR(200),
-    foodType VARCHAR(20),
-    foodDate VARCHAR(300),
-    foodTime VARCHAR(300),
+    uniqname VARCHAR(20) NOT NULL,
+    campus VARCHAR(30) NOT NULL,
+    locName VARCHAR(200) NOT NULL,
+    lat REAL,
+    lng REAL,
+    foodType VARCHAR(20) NOT NULL,
+    foodDate VARCHAR(50) NOT NULL,
     requirement VARCHAR(2000),
     organization VARCHAR(200)
 );

@@ -49,15 +49,16 @@
               :model="form"
               label-width="140px"
               justify="left"
+              :rules="rules"
             >
-              <el-form-item label="Uniqname:">
+              <el-form-item label="Uniqname:" prop="name">
                 <el-input
                   placeholder="Enter your uniqname"
                   v-model="form.name"
                 ></el-input>
               </el-form-item>
 
-              <el-form-item label="Campus:">
+              <el-form-item label="Campus:" prop="campus">
                 <el-select
                   v-model="form.campus"
                   placeholder="Select your location"
@@ -67,7 +68,7 @@
                 </el-select>
               </el-form-item>
 
-              <el-form-item label="Location:">
+              <el-form-item label="Location:" prop="location">
                 <gmap-autocomplete
                   class="gmap-auto"
                   @place_changed="initMarker"
@@ -75,7 +76,7 @@
                 </gmap-autocomplete>
               </el-form-item>
 
-              <el-form-item label="Type of Food:">
+              <el-form-item label="Type of Food:" prop="type">
                 <el-select
                   v-model="form.type"
                   placeholder="Select food type"
@@ -90,7 +91,7 @@
                 </el-select>
               </el-form-item>
 
-              <el-form-item label="Time:">
+              <el-form-item label="Time:" required>
                 <el-col :span="11">
                   <el-date-picker
                     type="date"
@@ -109,14 +110,14 @@
                 </el-col>
               </el-form-item>
               <el-form-item label="Requirements:">
-                <el-input type="textarea" v-model="form.desc"></el-input>
+                <el-input type="textarea" v-model="form.req"></el-input>
               </el-form-item>
 
               <el-form-item label="Event/Organization:">
                 <el-input v-model="form.event"></el-input>
               </el-form-item>
               <el-form-item style="margin-left: 0px">
-                <el-button type="primary" @click="create_event"
+                <el-button type="primary" @click="create_event('form')"
                   >Create</el-button
                 >
                 <el-button @click="go_back">Cancel</el-button>
@@ -137,6 +138,8 @@
 
 <script>
 import GoogleMap from "./GoogleMap.vue";
+import axios from "axios";
+const path = "http://localhost:5000/";
 /* eslint-disable */
 export default {
   name: "Home",
@@ -157,9 +160,35 @@ export default {
         campus: "",
         date1: "",
         date2: "",
-        desc: "",
+        req: "",
         event: "",
         type: "",
+      },
+      rules: {
+        name: [
+          { required: true, message: "Uniqname is required", trigger: "blur" },
+        ],
+        campus: [
+          { required: true, message: "Campus is required", trigger: "blur" },
+        ],
+        location: [
+          { required: true, message: "Location is required", trigger: "blur" },
+        ],
+        time: [
+          {
+            type: "date",
+            required: true,
+            message: "Date is required",
+            trigger: "change",
+          },
+        ],
+        type: [
+          {
+            required: true,
+            message: "Food type is required",
+            trigger: "blur",
+          },
+        ],
       },
     };
   },
@@ -175,18 +204,33 @@ export default {
       this.show_home = false;
       this.show_find = true;
     },
-    create_event() {
-      this.form = {
-        name: "",
-        location: "",
-        campus: "",
-        date1: "",
-        date2: "",
-        desc: "",
-        event: "",
-        type: "",
-      };
-      alert("Event created!!!");
+    create_event(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          axios.post(path, this.form);
+          this.form = {
+            name: "",
+            location: "",
+            campus: "",
+            date1: "",
+            date2: "",
+            req: "",
+            event: "",
+            type: "",
+          };
+          this.$notify({
+            title: "Success",
+            message: "You have created a free food event!!!",
+            type: "success",
+          });
+        } else {
+          this.$notify.error({
+            title: "Error",
+            message:
+              "Please make sure you have entered all required information.",
+          });
+        }
+      });
     },
     go_back() {
       this.show_home = true;

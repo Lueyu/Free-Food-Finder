@@ -1,4 +1,4 @@
-bash ./bin/db
+bash ./sql/bin/db
 sqlite3 var/foodDB.sqlite3 < ./sql/reset.sql
 sqlite3 var/foodDB.sqlite3 < ./sql/schema.sql
 

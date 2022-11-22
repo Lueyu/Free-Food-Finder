@@ -78,9 +78,12 @@
           :cell-style="tableColor"
           :header-cell-style="headerColor"
         >
-          <el-table-column fixed prop="date" label="Date"> </el-table-column>
+          <el-table-column fixed prop="time" label="Time"> </el-table-column>
           <el-table-column prop="location" label="Location"> </el-table-column>
           <el-table-column prop="type" label="Food Type"> </el-table-column>
+          <el-table-column prop="campus" label="Campus"> </el-table-column>
+          <el-table-column prop="org" label="Organization"> </el-table-column>
+          <el-table-column prop="req" label="Requirement"> </el-table-column>
         </el-table>
       </el-col>
     </el-row>
@@ -88,10 +91,13 @@
 </template>
  
 <script>
+import axios from "axios";
+const path = "http://localhost:5000/";
 export default {
   name: "GoogleMap",
   data() {
     return {
+      welcome: true,
       center: {
         lat: 39.7837304,
         lng: -100.4458825,
@@ -99,13 +105,7 @@ export default {
       locationMarkers: [],
       locPlaces: [],
       existingPlace: null,
-      tableData: [
-        {
-          date: "2016-05-03",
-          location: "ggbl",
-          type: "burger",
-        },
-      ],
+      tableData: [],
       query: {
         location: "",
         type: "",
@@ -115,6 +115,10 @@ export default {
 
   mounted() {
     this.locateGeoLocation();
+  },
+
+  created() {
+    this.filterData();
   },
 
   methods: {
@@ -153,7 +157,43 @@ export default {
       return "background-color: lightblue; color: white";
     },
     filterData() {
-      alert("trigger with" + this.query.location + ";" + this.query.type);
+      //alert("trigger with" + this.query.location + ";" + this.query.type);
+      axios
+        .post(path + "query", {
+          location: this.query.location,
+          type: this.query.type,
+        })
+        .then((response) => {
+          this.tableData = response.data;
+          console.log(response.data);
+          for (let i = 0; i < response.data.length; ++i) {
+            const marker = {
+              lat: response.data[i].lat,
+              lng: response.data[i].lng,
+            };
+            this.locationMarkers.push({ position: marker });
+          }
+          if (welcome) {
+            this.$notify({
+              title: "Success",
+              message: "Welcome to the world of Free Food.",
+              type: "success",
+            });
+            welcome = false;
+          } else {
+            this.$notify({
+              title: "Success",
+              message: "Filter success.",
+              type: "success",
+            });
+          }
+        })
+        .catch(() => {
+          this.$notify.error({
+            title: "Error",
+            message: "Network error.",
+          });
+        });
     },
   },
 };
