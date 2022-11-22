@@ -9,3 +9,10 @@ https://medium.com/geekculture/hot-reload-does-not-work-in-vue-cli-16ca8ead18be
 
 hot reload
 https://medium.com/geekculture/hot-reload-does-not-work-in-vue-cli-16ca8ead18be
+
+element ui
+https://blog.csdn.net/weixin_51908696/article/details/125590981
+https://blog.csdn.net/qq_42345108/article/details/107038133
+
+element ui language
+https://blog.csdn.net/AXIMI/article/details/99647252?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-99647252-blog-115767822.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-99647252-blog-115767822.pc_relevant_recovery_v2&utm_relevant_index=4

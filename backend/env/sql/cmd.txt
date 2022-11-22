@@ -1,0 +1,6 @@
+bash ./bin/db
+sqlite3 var/foodDB.sqlite3 < ./sql/reset.sql
+sqlite3 var/foodDB.sqlite3 < ./sql/schema.sql
+
+sqlite3 ./sql/var/foodDB.sqlite3
+.tables

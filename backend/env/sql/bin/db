@@ -1,0 +1,3 @@
+rm -rf ./sql/var
+mkdir ./sql/var
+sqlite3 ./sql/var/foodDB.sqlite3 < ./sql/schema.sql
