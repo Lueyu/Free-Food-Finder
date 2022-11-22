@@ -62,9 +62,10 @@
                 <el-select
                   v-model="form.campus"
                   placeholder="Select your location"
+                  clearable
                 >
-                  <el-option label="North Campus" value="north"></el-option>
-                  <el-option label="Central Campus" value="central"></el-option>
+                  <el-option label="North Campus" value="North"></el-option>
+                  <el-option label="Central Campus" value="Central"></el-option>
                 </el-select>
               </el-form-item>
 
@@ -81,13 +82,15 @@
                   v-model="form.type"
                   placeholder="Select food type"
                   width="100%"
+                  clearable
                 >
-                  <el-option label="Vegan" value="vegan"></el-option>
-                  <el-option label="Halal" value="halal"></el-option>
-                  <el-option label="Pizza" value="pizza"></el-option>
-                  <el-option label="Burger" value="burger"></el-option>
-                  <el-option label="Salad" value="salad"></el-option>
-                  <el-option label="Sandwich" value="sandwich"></el-option>
+                  <el-option label="Vegan" value="Vegan"></el-option>
+                  <el-option label="Pizza" value="Pizza"></el-option>
+                  <el-option label="Burger" value="Burger"></el-option>
+                  <el-option label="Salad" value="Salad"></el-option>
+                  <el-option label="Sandwich" value="Sandwich"></el-option>
+                  <el-option label="Halal" value="Halal"></el-option>
+                  <el-option label="Kosher" value="Kosher"></el-option>
                 </el-select>
               </el-form-item>
 

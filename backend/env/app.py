@@ -101,9 +101,11 @@ def index_page_query():
         "SELECT campus,locName,lat,lng,foodType,foodDate,requirement,organization FROM info"
     )
     if location is not "":
-        info.execute("SELECT * FROM info WHERE locName=?", (location))
+        location = '%'+location+'%'
+        info.execute("SELECT * FROM info WHERE locName LIKE ?", (location, ))
     if foodType is not "":
-        info.execute("SELECT * FROM info WHERE foodType=?", (foodType))
+        foodType = '%'+foodType+'%'
+        info.execute("SELECT * FROM info WHERE foodType LIKE ?", (foodType, ))
     res = []
     for row in info:
         res.append(
@@ -118,6 +120,7 @@ def index_page_query():
                 "org": row["organization"]
             }
         )
+    # print(res)
     return jsonify(res)
 
 

@@ -28,13 +28,15 @@
             v-model="query.type"
             placeholder="Food type"
             style="width: 200px"
+            clearable
           >
-            <el-option label="Vegan" value="vegan"></el-option>
-            <el-option label="Halal" value="halal"></el-option>
-            <el-option label="Pizza" value="pizza"></el-option>
-            <el-option label="Burger" value="burger"></el-option>
-            <el-option label="Salad" value="salad"></el-option>
-            <el-option label="Sandwich" value="sandwich"></el-option>
+            <el-option label="Vegan" value="Vegan"></el-option>
+            <el-option label="Pizza" value="Pizza"></el-option>
+            <el-option label="Burger" value="Burger"></el-option>
+            <el-option label="Salad" value="Salad"></el-option>
+            <el-option label="Sandwich" value="Sandwich"></el-option>
+            <el-option label="Halal" value="Halal"></el-option>
+            <el-option label="Kosher" value="Kosher"></el-option>
           </el-select>
         </el-row>
         <el-row style="top: 20px">
@@ -64,8 +66,19 @@
             :key="index"
             v-for="(m, index) in locationMarkers"
             :position="m.position"
-            @click="center = m.position"
+            @click="openInfoWindowTemplate(index)"
           ></gmap-marker>
+          <gmap-info-window
+            :options="{
+              maxWidth: 400,
+              pixelOffset: { width: 0, height: -35 },
+            }"
+            :position="infoWindow.position"
+            :opened="infoWindow.open"
+            @closeclick="infoWindow.open = false"
+          >
+            <div v-html="infoWindow.template"></div>
+          </gmap-info-window>
         </gmap-map>
       </el-col>
 
@@ -102,6 +115,11 @@ export default {
         lat: 39.7837304,
         lng: -100.4458825,
       },
+      infoWindow: {
+        position: { lat: 0, lng: 0 },
+        open: false,
+        template: "",
+      },
       locationMarkers: [],
       locPlaces: [],
       existingPlace: null,
@@ -128,17 +146,17 @@ export default {
     initMarker(loc) {
       this.existingPlace = loc;
     },
-    addLocationMarker() {
-      if (this.existingPlace) {
-        const marker = {
-          lat: this.existingPlace.geometry.location.lat(),
-          lng: this.existingPlace.geometry.location.lng(),
-        };
-        this.locationMarkers.push({ position: marker });
-        this.locPlaces.push(this.existingPlace);
-        this.center = marker;
-        this.existingPlace = null;
-      }
+    closeWindow() {
+      this.infoWindow.open = false;
+    },
+    openInfoWindowTemplate(index) {
+      this.infoWindow.position = {
+        lat: this.locationMarkers[index]["position"]["lat"],
+        lng: this.locationMarkers[index]["position"]["lng"],
+      };
+      const name = this.locationMarkers[index]["name"];
+      this.infoWindow.template = `<b>${name}</b>`;
+      this.infoWindow.open = true;
     },
     locateGeoLocation: function () {
       navigator.geolocation.getCurrentPosition((res) => {
@@ -154,10 +172,9 @@ export default {
       }
     },
     tableColor() {
-      return "background-color: lightblue; color: white";
+      return "background-color: lightblue; color: black";
     },
     filterData() {
-      //alert("trigger with" + this.query.location + ";" + this.query.type);
       axios
         .post(path + "query", {
           location: this.query.location,
@@ -165,21 +182,25 @@ export default {
         })
         .then((response) => {
           this.tableData = response.data;
-          console.log(response.data);
+          this.locationMarkers = [];
           for (let i = 0; i < response.data.length; ++i) {
             const marker = {
               lat: response.data[i].lat,
               lng: response.data[i].lng,
             };
-            this.locationMarkers.push({ position: marker });
+            this.locationMarkers.push({
+              position: marker,
+              name: response.data[i].location,
+            });
           }
-          if (welcome) {
+          //console.log(this.locationMarkers);
+          if (this.welcome) {
             this.$notify({
               title: "Success",
               message: "Welcome to the world of Free Food.",
               type: "success",
             });
-            welcome = false;
+            this.welcome = false;
           } else {
             this.$notify({
               title: "Success",
